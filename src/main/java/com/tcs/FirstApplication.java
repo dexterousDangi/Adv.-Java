@@ -9,9 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/**
- * Servlet implementation class FirstApplication
- */
+
 public class FirstApplication implements Servlet {
 
    
