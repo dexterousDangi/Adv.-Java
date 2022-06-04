@@ -20,16 +20,14 @@
     <servlet-name>FirstApplication</servlet-name>
     <url-pattern>/FirstApplication</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>FirstApplication</servlet-name>
     <url-pattern>/abc/*</url-pattern>
   </servlet-mapping>
-  
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>FirstApplication</servlet-name>
     <url-pattern>*.dangi</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>FirstGenericServletApp</display-name>
@@ -49,5 +47,15 @@
   <servlet-mapping>
     <servlet-name>ServletUsingHTTPServlet</servlet-name>
     <url-pattern>/ServletUsingHTTPServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FirstServlet</display-name>
+    <servlet-name>FirstServlet</servlet-name>
+    <servlet-class>com.tcs.FirstServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FirstServlet</servlet-name>
+    <url-pattern>/FirstServlet</url-pattern>
   </servlet-mapping>
 </web-app>
