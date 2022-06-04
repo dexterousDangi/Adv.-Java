@@ -3,6 +3,7 @@ package com.tcs;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +68,31 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher= request.getRequestDispatcher("failedmsg.html");
 			dispatcher.forward(request, response);
 		}
-	*/	
+	*/	 
+		
+		// here we are using include and forward mechanism both executed at the server side
+		// and whenever we use the include mechanism response is addition of the all the servlets
+		// and whenever we use the forward mechanism only the forwarded servlet is adding response to the response object not all the objects
+		
+		
+		if (username.equalsIgnoreCase("pardeep") && password.equals("dangi")) {
+			writer.println("this is success and we are using forward mechanism");
+			
+			RequestDispatcher dispatcher= request.getRequestDispatcher("SuccessServlet");
+			dispatcher.forward(request, response);
+		} else {
+			writer.println("this is failed ");
+			writer.println("that is failed");
+			RequestDispatcher dispatcher= request.getRequestDispatcher("login.html");
+			dispatcher.include(request, response);
+			
+			RequestDispatcher dispatcher1= request.getRequestDispatcher("success.html");
+			dispatcher1.include(request, response);
+		}
+		
+		
+		
+		
 		
 	// or 
 		//we can also use the HyperLink to process the next step after successful login or login failed
