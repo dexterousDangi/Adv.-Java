@@ -1,15 +1,17 @@
-package com.tcs;
+ package com.tcs;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
  
 public class CustomerServlet extends HttpServlet {
@@ -44,8 +46,22 @@ public class CustomerServlet extends HttpServlet {
 		 try {
 			 
 			 if(connection==null) {
-			 Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","manager");
+//			 Class.forName("oracle.jdbc.driver.OracleDriver");
+//			connection= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","manager");
+				 
+			/*
+			 * this is how third party connection pooling is done.
+			 */
+			//	 connection=ConnUtils.dataSource.getConnection();
+				
+				 
+				 /*
+				 * server side connection pooling 
+				 */
+			   Context initContext=new InitialContext();
+			   DataSource ds=(DataSource)initContext.lookup("java:/comp/env/mypool");
+			  connection=  ds.getConnection();
+				 
 			 }
 			 PreparedStatement preparedStatement = connection.prepareStatement("insert into customer values (?,?,?,?,?)");
 			 preparedStatement.setString(1, firstName);
